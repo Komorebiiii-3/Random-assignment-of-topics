@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LINE品牌官方聊天機器人的體驗感受調查</title>
+    <script>
+        const urls = [
+            "https://forms.gle/aSCzBqoRAAGZapgi7",
+            "https://forms.gle/CYdnGJ1w8caTA5iv7",
+            "https://forms.gle/5cbkrZfvWnkynUno8",
+            "https://forms.gle/U1gsfAHUtKKw9syQA",
+            "https://forms.gle/yMz9yAMNijpts9fq6",
+            "https://forms.gle/7FEuPxtZP5HJJoVe7",
+            "https://forms.gle/21xwEpewwd1914fCA",
+            "https://forms.gle/76ueqEBuGLjgrAbc8"
+        ];
+
+        let clickCounts = new Array(urls.length).fill(0);  // 初始化每個網址的點擊次數
+
+        function selectUrl() {
+            // 找出最少點擊的網址索引
+            let minClicks = Math.min(...clickCounts);
+            let availableUrls = clickCounts
+                .map((count, index) => count === minClicks ? index : -1)
+                .filter(index => index !== -1);
+
+            // 隨機選擇一個最少點擊的網址
+            let randomIndex = availableUrls[Math.floor(Math.random() * availableUrls.length)];
+            clickCounts[randomIndex]++;  // 增加該網址的點擊次數
+            return urls[randomIndex];  // 返回選擇的網址
+        }
+
+        // 進行跳轉，選擇一個點擊次數最少的網址
+        window.location.replace(selectUrl());  // 使用 selectUrl() 函數選擇並跳轉
+    </script>
+</head>
+</html>
